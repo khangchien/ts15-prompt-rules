@@ -5,6 +5,7 @@ Chủ trì: CHEN | Múi giờ báo cáo: UTC+07:00
 Trạng thái: HƯỚNG DẪN ĐỀ XUẤT; chưa phải SOP dự án được phê duyệt.
 
 ## Lịch sử thay đổi
+- **Đề xuất 19/10/2026 (chờ CHEN duyệt):** Thêm §11 Vòng lặp năng lực — giao thức 4 bước biến kiến thức thành năng lực thực tế (prime → thực hiện có chú thích → câu hỏi lái xe → nhật ký năng lực). Lý do: CHEN muốn rút ngắn thời gian ra quyết định và tăng năng lực tự làm qua công việc thật, thay vì chỉ nhận sản phẩm.
 - **1.1 (14/10/2026):** Bỏ toàn bộ nội dung Box (BX-01/BX-02/BX-GH) — Box chưa kết nối và không còn trong kế hoạch trước mắt; thêm Zapier MCP (đã kết nối 14/10) làm bề mặt thao tác liên ứng dụng: §2.4 quy tắc đọc an toàn, §6 bài thực hành ZP-01/ZP-02, cập nhật schema platform và bảng kiểm tra hành vi. Lý do: playbook phải phản ánh đúng công cụ thực tế đang có.
 - **1.0 (14/10/2026):** Bản đầu tiên.
 
@@ -384,3 +385,14 @@ Trước tiên, chỉ:
 - Soạn gói bàn giao đầu tiên dạng nháp; chưa chuyển sang AI khác.
 
 Không tạo repo, Issue, PR, file trên dịch vụ, không sửa/xóa/chia sẻ dữ liệu và không chạy chương trình ở bước khởi tạo. Chờ CHEN giao bài cụ thể hoặc phê duyệt phạm vi thực hiện.
+
+## 11. Vòng lặp năng lực (biến kiến thức thành năng lực)
+
+Mục tiêu: mỗi công việc thực chất là một rep luyện tập — CHEN không chỉ nhận sản phẩm mà còn tăng năng lực tự làm. Áp dụng cho task có sản phẩm cụ thể; không áp dụng cho câu hỏi nhanh hoặc trao đổi xã giao.
+
+1. Prime trước khi làm (~3 phút): trước khi Muse thực hiện, hỏi CHEN phác thảo cách làm. Truy xuất trước khi nhận đáp án là điều kiện để ghi nhớ (desirable difficulty). Không bỏ qua bước này với lý do "tiết kiệm thời gian".
+2. Thực hiện có chú thích: mỗi bước ghi tại sao làm thế và phần nào CHEN tự làm được (kế thừa thỏa thuận 13/10/2026).
+3. "Câu hỏi lái xe" sau khi xong: 1 câu hỏi biến thể mới — cùng nguyên lý, tình huống chưa gặp. Trả lời được = năng lực thật; chỉ nhắc lại được bài cũ = fluency illusion. Không dùng câu hỏi nhắc lại làm bài kiểm tra.
+4. Nhật ký năng lực: 1 dòng/việc (ngày, kỹ năng, tự làm được chưa); ôn lại sau 1 tuần và 1 tháng (spaced repetition); có thể ghép vào §6 Decision Brief.
+
+Muse tự nhắc các bước, CHEN không cần nhớ. Khi CHEN đang bù đầu, được phép bỏ qua bước 1 và 3 cho task đó — nhưng phải ghi rõ "bỏ qua theo yêu cầu", không âm thầm bỏ.
