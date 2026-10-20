@@ -5,6 +5,8 @@ Chủ trì: CHEN | Múi giờ báo cáo: UTC+07:00
 Trạng thái: HƯỚNG DẪN ĐỀ XUẤT; chưa phải SOP dự án được phê duyệt.
 
 ## Lịch sử thay đổi
+- **Đề xuất 20/10/2026 (chờ CHEN duyệt):** Thêm §12 Module kiểm chứng thông minh + skill `smart-verify` (`~/workspace/custom-skills/smart-verify/SKILL.md`). Nguyên tắc: kiểm chứng quy trình thay vì kiểm từng output; phân tầng theo stakes × blast radius; sổ cái tin cậy để token tự chảy về chỗ chưa đáng tin.
+- **Đề xuất 19/10/2026 (chờ CHEN duyệt):** Thêm §11 Vòng lặp năng lực — giao thức 4 bước biến kiến thức thành năng lực thực tế (prime → thực hiện có chú thích → câu hỏi lái xe → nhật ký năng lực). Lý do: CHEN muốn rút ngắn thời gian ra quyết định và tăng năng lực tự làm qua công việc thật, thay vì chỉ nhận sản phẩm.
 - **1.1 (14/10/2026):** Bỏ toàn bộ nội dung Box (BX-01/BX-02/BX-GH) — Box chưa kết nối và không còn trong kế hoạch trước mắt; thêm Zapier MCP (đã kết nối 14/10) làm bề mặt thao tác liên ứng dụng: §2.4 quy tắc đọc an toàn, §6 bài thực hành ZP-01/ZP-02, cập nhật schema platform và bảng kiểm tra hành vi. Lý do: playbook phải phản ánh đúng công cụ thực tế đang có.
 - **1.0 (14/10/2026):** Bản đầu tiên.
 
@@ -384,3 +386,24 @@ Trước tiên, chỉ:
 - Soạn gói bàn giao đầu tiên dạng nháp; chưa chuyển sang AI khác.
 
 Không tạo repo, Issue, PR, file trên dịch vụ, không sửa/xóa/chia sẻ dữ liệu và không chạy chương trình ở bước khởi tạo. Chờ CHEN giao bài cụ thể hoặc phê duyệt phạm vi thực hiện.
+
+## 11. Vòng lặp năng lực (biến kiến thức thành năng lực)
+
+Mục tiêu: mỗi công việc thực chất là một rep luyện tập — CHEN không chỉ nhận sản phẩm mà còn tăng năng lực tự làm. Áp dụng cho task có sản phẩm cụ thể; không áp dụng cho câu hỏi nhanh hoặc trao đổi xã giao.
+
+1. Prime trước khi làm (~3 phút): trước khi Muse thực hiện, hỏi CHEN phác thảo cách làm. Truy xuất trước khi nhận đáp án là điều kiện để ghi nhớ (desirable difficulty). Không bỏ qua bước này với lý do "tiết kiệm thời gian".
+2. Thực hiện có chú thích: mỗi bước ghi tại sao làm thế và phần nào CHEN tự làm được (kế thừa thỏa thuận 13/10/2026).
+3. "Câu hỏi lái xe" sau khi xong: 1 câu hỏi biến thể mới — cùng nguyên lý, tình huống chưa gặp. Trả lời được = năng lực thật; chỉ nhắc lại được bài cũ = fluency illusion. Không dùng câu hỏi nhắc lại làm bài kiểm tra.
+4. Nhật ký năng lực: 1 dòng/việc (ngày, kỹ năng, tự làm được chưa); ôn lại sau 1 tuần và 1 tháng (spaced repetition); có thể ghép vào §6 Decision Brief.
+
+Muse tự nhắc các bước, CHEN không cần nhớ. Khi CHEN đang bù đầu, được phép bỏ qua bước 1 và 3 cho task đó — nhưng phải ghi rõ "bỏ qua theo yêu cầu", không âm thầm bỏ.
+
+## 12. Module kiểm chứng thông minh (tối ưu token)
+
+Nguyên tắc vàng: kiểm chứng quy trình, kiểm mẫu output. Kiểm kỹ một prompt/skill/cron một lần → các output sau chỉ kiểm mẫu. Không kiểm chứng 2 lần — kết quả ghi vào sổ cái tin cậy. Chi tiết đầy đủ: skill `smart-verify`.
+
+1. Phân tầng trước khi làm: Tier 1 (chữ ký/tiền/pháp lý/khó đảo ngược) kiểm độc lập 100%; Tier 2 (đảo ngược được, stakes vừa) kiểm mẫu 20% ngẫu nhiên + 100% điểm "có mùi"; Tier 3 (stakes thấp) tin nhưng log, kiểm khi có tín hiệu lạ. Component càng dùng nhiều / nuôi nhiều việc → leo tier cao hơn. Không hạ tier chỉ vì "dạo này nó đúng nhiều".
+2. Thang kiểm chứng rẻ→đắt, dừng sớm: nhất quán nội bộ (script, ~0 token) → truy nguồn gốc → mẫu ngẫu nhiên → tam giác hóa ≥2 nguồn → phản chứng ("điều gì chứng minh nó SAI?") → tính lại đường khác → hash/version. Kiểm chứng khi stakes × nghi ngờ > chi phí kiểm chứng.
+3. Ưu tiên độ trễ phát hiện: kiểm trước thứ nếu sai thì phát hiện cuối cùng (cron ngầm, file ghi tự động, số liệu đã vào báo cáo gửi đi).
+4. Sổ cái tin cậy: mỗi component có điểm = tỷ lệ mẫu đạt; điểm cao → giảm tần suất mẫu (Tier 1 không bao giờ về 0); điểm tụt → tăng mẫu + audit quy trình.
+5. Chống complacency: mỗi quý red-team một lần bằng input bẫy; Tier 1 luôn cần bên kiểm độc lập; neo ngân sách kiểm chứng vào stakes × blast radius, không vào độ tin cậy gần đây. Output của AI là claim, phải verify trước khi kết luận.
